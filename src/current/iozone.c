@@ -307,6 +307,12 @@ THISVERSION,
 #endif
 #endif
 
+#if defined (android)
+#ifndef O_RSYNC
+#define O_RSYNC 0
+#endif
+#endif
+
 #if ((defined(solaris) && defined(__LP64__)) || defined(__s390x__))
 /* If we are building for 64-bit Solaris, all functions that return pointers
  * must be declared before they are used; otherwise the compiler will assume
@@ -3121,7 +3127,9 @@ char **argv;
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -12488,7 +12496,9 @@ thread_write_test( x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -13192,7 +13202,9 @@ thread_pwrite_test( x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -13824,7 +13836,9 @@ thread_rwrite_test(x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -14415,7 +14429,9 @@ thread_read_test(x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -15531,7 +15547,9 @@ thread_rread_test(x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -16099,7 +16117,9 @@ thread_reverse_read_test(x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -16635,7 +16655,9 @@ thread_stride_read_test(x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -17306,7 +17328,9 @@ thread_ranread_test(x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
@@ -17938,7 +17962,9 @@ thread_ranwrite_test( x)
      CPU_ZERO(&cpuset);
      CPU_SET(bind_cpu, &cpuset);
 
+#if !defined(android)
      pthread_setaffinity_np(pthread_self(), sizeof(cpuset),&cpuset);
+#endif
 #endif
 		my_nap(40);	/* Switch to new cpu */
 	}
